@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tetris Binario</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="top">
+        <h1>Tetris Binario</h1>
+        <div class="controls">
+          <button id="btn-start" class="btn">Iniciar</button>
+          <button id="btn-pause" class="btn" disabled>Pausa</button>
+          <button id="btn-restart" class="btn" disabled>Reiniciar</button>
+          <button id="btn-records" class="btn" title="Ver récords">Records</button>
+          <button id="btn-theme" class="btn" title="Cambiar tema">Tema: Dark</button>
+          <label class="bits">
+            Bits:
+            <select id="select-bits" title="Ancho en bits">
+              <option value="8" selected>8</option>
+              <option value="6">6</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+            </select>
+          </label>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="targets">
+          <h2>Objetivos</h2>
+          <div id="targets" class="target-list" aria-live="polite"></div>
+          <p class="hint">Haz que cualquier fila valga uno de estos decimales.</p>
+        </section>
+
+        <section class="game">
+          <div class="weights" id="weights"></div>
+          <div id="board" class="board" role="grid" aria-label="Tablero"></div>
+          <div class="legend">
+            <div><span class="cell filled"></span> = 1</div>
+            <div><span class="cell"></span> = 0</div>
+          </div>
+        </section>
+
+        <section class="side">
+          <div class="panel">
+            <h2>Puntuación</h2>
+            <div id="score" class="score">0</div>
+            <div class="highscore-row">
+              <span id="high-label" class="label">Mejor:</span>
+              <span id="high-score" class="highscore">0</span>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>Siguiente</h2>
+            <canvas id="next" width="100" height="100" class="next"></canvas>
+          </div>
+          <div class="panel small">
+            <h2>Controles</h2>
+            <ul class="keys">
+              <li>← → mover</li>
+              <li>↑ rotar</li>
+              <li>↓ bajar</li>
+              <li>Espacio caída</li>
+              <li>P pausa</li>
+              <li>R reiniciar</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer class="bottom">
+        <small>
+          La fila se elimina si su valor binario (0/1 por celda) coincide con
+          alguno de los 4 objetivos decimales. 0 no se usa como objetivo.
+        </small>
+        <br />
+        <small>
+          Créditos: Javier Feijóo López — Docente Informática en Secundaria, Xunta de Galicia —
+          <a href="https://github.com/javier-feijoo" target="_blank" rel="noopener noreferrer">github.com/javier-feijoo</a>
+        </small>
+      </footer>
+    </div>
+
+    
+
+    <!-- Modal de Récords -->
+    <div id="records-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" id="records-backdrop"></div>
+      <div class="modal-dialog" role="document">
+        <div class="modal-header">
+          <h3>Récords por nivel</h3>
+          <button id="records-close" class="btn btn-ghost" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <ul id="records-list" class="records"></ul>
+          <p class="hint">Los récords se guardan por número de bits.</p>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+  </html>
